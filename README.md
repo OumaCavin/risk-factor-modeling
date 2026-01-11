@@ -878,6 +878,43 @@ X_train, X_test, y_train, y_test = prepare_data(df_features, features, 'POOR_HEA
 models = train_multiple_models(X_train, y_train)
 ```
 
+### WSL/Linux Configuration
+
+For users running this project in Windows Subsystem for Linux (WSL) or Linux environments, the following path configuration ensures proper file access across the project structure:
+
+```python
+from pathlib import Path
+
+# -------------------------------
+
+# Define project paths (WSL/Linux)
+
+# -------------------------------
+
+PROJECT_ROOT = Path('/home/cavin/projects/DataAnalytics/risk-factor-modeling')
+
+# Define subdirectory paths
+DATA_DIR = PROJECT_ROOT / 'data'
+DATA_RAW = DATA_DIR / 'raw'
+DATA_PROCESSED = DATA_DIR / 'processed'
+DATA_RESULTS = DATA_DIR / 'results'
+SRC_DIR = PROJECT_ROOT / 'src'
+DOCS_DIR = PROJECT_ROOT / 'docs'
+VISUALIZATIONS_DIR = PROJECT_ROOT / 'visualizations'
+NOTEBOOKS_DIR = PROJECT_ROOT / 'notebooks'
+
+# Ensure directories exist
+for directory in [DATA_DIR, DATA_RAW, DATA_PROCESSED, DATA_RESULTS, SRC_DIR, DOCS_DIR, VISUALIZATIONS_DIR, NOTEBOOKS_DIR]:
+    directory.mkdir(parents=True, exist_ok=True)
+
+# Example usage in data loading
+# from src.data_loading import load_health_data
+# data_path = DATA_RAW / 'brfss_data.csv'
+# df, source = load_health_data(str(data_path))
+```
+
+**Note:** Adjust the `PROJECT_ROOT` path to match your specific WSL/Linux directory structure. The above configuration assumes the project is located in your home directory under `projects/DataAnalytics/`.
+
 ---
 
 ## Author Information
